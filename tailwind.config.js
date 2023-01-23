@@ -32,6 +32,12 @@ module.exports = {
     backgroundColor: {
       none: "none",
       transparent: "transparent",
+      "side-bar": "#171717",
+      "sideBar-navLinkActive": "#1b1b1b",
+      dropDown: "#282828",
+      tabHeader: "#181818",
+      tabContent: "rgba(24, 24, 24, 0.6)",
+      input: "rgba(27, 27, 27, 0.6)",
       red: "#c73238",
       "red-light": "#cb575bfa",
       "black-900": "#171717",

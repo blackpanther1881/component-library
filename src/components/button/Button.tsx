@@ -1,7 +1,7 @@
 import React from "react";
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import { CSType } from "../../types/Colors";
-import { DragontailSizeType } from "../../types/Sizes";
+import { SizeType } from "../../types/Sizes";
 import { ButtonVariants } from "../../types/Variants";
 import { forwardRef } from "../../utils/forwardRef";
 
@@ -11,7 +11,7 @@ export interface CustomButtonProps {
   rightIcon?: JSX.Element;
   variant?: ButtonVariants;
   focusEffect?: boolean;
-  scale?: DragontailSizeType;
+  scale?: SizeType;
   isDisabled?: boolean;
 }
 
@@ -42,7 +42,7 @@ const COLORS = (
   return colors[variant][color];
 };
 
-const SIZES: Record<DragontailSizeType, string> = {
+const SIZES: Record<SizeType, string> = {
   lg: "px-5 py-3 gap-2",
   md: "px-4 py-2 gap-2",
   sm: "px-2 py-2 gap-1 text-xs",
@@ -111,7 +111,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 "ghost",
                 "primary",
               )}`
-            : `border hover:outline-none hover:bg-opacity-30 bg-transparent ${COLORS(
+            : `border hover:outline-none bg-transparent ${COLORS(
                 "ghost",
                 "primary",
               )} ${COLORS("outline", "primary")}`
