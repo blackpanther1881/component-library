@@ -1,12 +1,12 @@
 {
-  "name": "component-library",
-  "version": "0.0.1",
+  "name": "@blackpanther1881/component-library",
+  "version": "0.0.3",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/blackpanther1881"
   },
   "description": "A React component library built with TailwindCSS and TypeScript.",
-  "repository": "https://github.com/blackapnther1881/component-library",
-  "homepage": "https://blackapnther1881.github.io/component-library",
+  "repository": "https://github.com/blackpanther1881/component-library",
+  "homepage": "https://blackpanther1881.github.io/component-library",
   "author": "blackapnther1881",
   "license": "MIT",
   "private": false,
@@ -48,9 +48,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:tailwind": "tailwindcss -o src/build.css --minify",
+    "tailwind": "tailwindcss -o src/build.css --minify",
     "rollup": "rollup -c",
-    "build:lib": "yarn build:tailwind && yarn build:rollup && cp src/build.css dist",
+    "build:lib": "npm run tailwind && npm run rollup && cp src/build.css dist",
     "dev": "react-scripts start",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
