@@ -1,0 +1,111 @@
+{
+  "name": "component-library",
+  "version": "0.0.1",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/blackpanther1881"
+  },
+  "description": "A React component library built with TailwindCSS and TypeScript.",
+  "repository": "https://github.com/blackapnther1881/component-library",
+  "homepage": "https://blackapnther1881.github.io/component-library",
+  "author": "blackapnther1881",
+  "license": "MIT",
+  "private": false,
+  "peerDependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "@rollup/plugin-typescript": "^8.3.0",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/builder-webpack5": "^6.3.12",
+    "@storybook/manager-webpack5": "^6.3.12",
+    "@storybook/react": "^6.3.12",
+    "@types/react": "^18.0.8",
+    "@types/react-dom": "^18.0.0",
+    "autoprefixer": "^10.4.2",
+    "gh-pages": "^4.0.0",
+    "postcss": "^8.4.6",
+    "postcss-cli": "^9.1.0",
+    "postcss-loader": "^4.1.0",
+    "react-scripts": "^5.0.1",
+    "rollup": "^2.67.2",
+    "rollup-plugin-dts": "^4.1.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "tailwindcss": "^3.0.24",
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.3",
+    "webpack": "5",
+    "yarn-add-no-save": "^1.0.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build:tailwind": "tailwindcss -o src/build.css --minify",
+    "build:rollup": "rollup -c",
+    "build:lib": "yarn build:tailwind && yarn build:rollup && cp src/build.css dist",
+    "dev": "react-scripts start",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public",
+    "predeploy": "yarn build-storybook",
+    "cleanup-deployment": "trash storybook-static",
+    "deploy:lib": "yarn build:lib && npm publish",
+    "deploy:storybook": "yarn predeploy && gh-pages -d storybook-static && yarn cleanup-deployment"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      },
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      },
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  }
+}
