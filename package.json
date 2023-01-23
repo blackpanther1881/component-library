@@ -1,6 +1,6 @@
 {
   "name": "@blackpanther1881/component-library",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/blackpanther1881"
   },
@@ -44,18 +44,12 @@
     "yarn-add-no-save": "^1.0.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "tailwind": "tailwindcss -o src/build.css --minify",
     "rollup": "rollup -c",
     "build:lib": "npm run tailwind && npm run rollup && cp src/build.css dist",
-    "dev": "react-scripts start",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "predeploy": "yarn build-storybook",
-    "cleanup-deployment": "trash storybook-static",
     "deploy:lib": "yarn build:lib && npm publish",
     "deploy:storybook": "yarn predeploy && gh-pages -d storybook-static && yarn cleanup-deployment"
   },

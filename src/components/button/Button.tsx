@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+import { ButtonHTMLAttributes } from "react";
 import { CSType } from "../../types/Colors";
 import { SizeType } from "../../types/Sizes";
 import { ButtonVariants } from "../../types/Variants";
@@ -51,11 +51,7 @@ const SIZES: Record<SizeType, string> = {
 
 const BASE_BUTTON = "rounded-md flex items-center";
 
-export type ButtonProps = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
-> &
-  CustomButtonProps;
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & CustomButtonProps;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -99,7 +95,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           variant === "solid"
             ? `${COLORS("solid", "primary")} ${
                 focusEffect
-                  ? "focus:outline-offset-2 focus:outline focus:outline-2 focus:outline-blue-600"
+                  ? "focus:outline-none"
                   : "focus:outline-none"
               }`
             : variant === "link"
