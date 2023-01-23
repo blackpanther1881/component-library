@@ -17,7 +17,8 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.3",
-    "@rollup/plugin-typescript": "^8.3.0",
+    "@rollup/plugin-terser": "^0.3.0",
+    "@rollup/plugin-typescript": "8.3.3",
     "@storybook/addon-actions": "^6.3.12",
     "@storybook/addon-essentials": "^6.3.12",
     "@storybook/addon-links": "^6.3.12",
@@ -36,7 +37,6 @@
     "rollup-plugin-dts": "^4.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-terser": "^7.0.2",
     "tailwindcss": "^3.0.24",
     "tslib": "^2.4.0",
     "typescript": "^4.6.3",
@@ -49,7 +49,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:tailwind": "tailwindcss -o src/build.css --minify",
-    "build:rollup": "rollup -c",
+    "rollup": "rollup -c",
     "build:lib": "yarn build:tailwind && yarn build:rollup && cp src/build.css dist",
     "dev": "react-scripts start",
     "storybook": "start-storybook -p 6006 -s public",
@@ -77,35 +77,7 @@
       "last 1 safari version"
     ]
   },
-  "eslintConfig": {
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      },
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      },
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
-  },
   "dependencies": {
-    "react": "^18.2.0"
+    "react": "^18.1.0"
   }
 }
