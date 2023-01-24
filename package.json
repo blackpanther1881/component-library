@@ -1,6 +1,6 @@
 {
   "name": "@blackpanther1881/component-library",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/blackpanther1881"
   },

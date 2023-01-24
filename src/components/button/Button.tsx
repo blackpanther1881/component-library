@@ -13,6 +13,7 @@ export interface CustomButtonProps {
   focusEffect?: boolean;
   scale?: SizeType;
   isDisabled?: boolean;
+  customButtonClass?: string
 }
 
 const ENABLED_STYLES:  Record<"solid" | "ghost", any> = {
@@ -37,7 +38,7 @@ const COLORS = (
     },
     outline: {
         primary: "border-red",
-    },
+    }
   };
   return colors[variant][color];
 };
@@ -58,6 +59,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     {
       children,
       isDisabled = false,
+        customButtonClass = "",
       leftIcon,
       rightIcon,
       variant = "solid",
@@ -107,10 +109,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 "ghost",
                 "primary",
               )}`
-            : `border hover:outline-none bg-transparent ${COLORS(
+            : variant === "outline" ? `border hover:outline-none bg-transparent ${COLORS(
                 "ghost",
                 "primary",
-              )} ${COLORS("outline", "primary")}`
+              )} ${COLORS("outline", "primary")}` :
+                          `hover:bg-opacity-50 bg-transparent ${customButtonClass}`
         }`}
         disabled={isDisabled}
         {...props}
