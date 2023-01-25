@@ -16,11 +16,11 @@ export default {
     ],
 } as ComponentMeta<typeof Dropdown>;
 
-const HideableTemplate: ComponentStory<typeof Dropdown> = (args) => {
+const Template: ComponentStory<typeof Dropdown> = (args) => {
     return <Dropdown {...args} />;
 };
 
-export const BasicExample = HideableTemplate.bind({});
+export const BasicExample = Template.bind({});
 // @ts-ignore
 BasicExample.args = {
     dropdownLabel: "Basic Dropdown",
@@ -34,5 +34,21 @@ BasicExample.args = {
     ],
     rounded: false
 } as DropdownProps;
-BasicExample.parameters = { backgrounds: { default: "dark" } };
+
+export const customDropdownButton = Template.bind({});
+// @ts-ignore
+customDropdownButton.args = {
+    dropdownLabel: "Custom Dropdown",
+    contentList: [
+        {
+            optionName: "option1",
+        },
+        {
+            optionName: "option1",
+        }
+    ],
+    dropDownVariant: "custom",
+    dropDownVariantBg: "bg-black-full text-light-high",
+    rounded: false
+} as DropdownProps;
 

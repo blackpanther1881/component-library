@@ -10,7 +10,7 @@ export interface CustomButtonProps {
   leftIcon?: JSX.Element;
   rightIcon?: JSX.Element;
   variant?: ButtonVariants;
-  focusEffect?: boolean;
+  focusEffect?: false;
   scale?: SizeType;
   isDisabled?: boolean;
   customButtonClass?: string
@@ -95,11 +95,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             : "justify-start"
         } ${BASE_BUTTON} ${
           variant === "solid"
-            ? `${COLORS("solid", "primary")} ${
-                focusEffect
-                  ? "focus:outline-none"
-                  : "focus:outline-none"
-              }`
+            ? `${COLORS("solid", "primary")}`
             : variant === "link"
             ? `${COLORS("ghost", "primary")} ${
                 !isDisabled && "hover:underline"
@@ -113,7 +109,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 "ghost",
                 "primary",
               )} ${COLORS("outline", "primary")}` :
-                          `hover:bg-opacity-50 bg-transparent ${customButtonClass}`
+                          `hover:bg-opacity-50 ${customButtonClass}`
         }`}
         disabled={isDisabled}
         {...props}

@@ -9,21 +9,29 @@ import {Button} from "../button";
 import {useOnClickOutside} from "../../utils/useOnClickOutside";
 
 export interface optionList {
-    optionName: string;
+    optionName: React.ReactNode | string;
     handler?: () => void;
-    imageUrl: string;
+    image?: React.ReactNode | string;
 }
+export type DropdownButtonVariants = "primary" | "custom";
 
 export type DropdownProps = {
-    dropdownLabel: string;
+    dropdownLabel: React.ReactNode | string;
     className?: string;
     contentList: optionList[];
     rounded?: boolean;
+    staticBackDrop?:boolean;
+    dropDownVariant: DropdownButtonVariants
+    dropDownVariantBg?: string
 } & DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
 
 export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
-    ({ dropdownLabel, contentList, className = "", rounded = false }) => {
+    ({ dropdownLabel, contentList,
+         className = "",
+         rounded = false,
+         staticBackDrop = true,
+         dropDownVariant = "primary", dropDownVariantBg = ""}) => {
         const [open, setOpen] = useState<boolean>(false);
         const topRounding = rounded ? "rounded-t-md" : "";
 
@@ -36,22 +44,24 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
         return (
             <div
                 className={`${topRounding} ${className} text-white relative inline-block`}
-                ref={ref}
+                ref={staticBackDrop ? null : ref}
             >
                 <Button
                     name={"buttonConnect"}
-                    className="
-         w-full md:py-2 md:text-sm"
-                    variant="custom"
+                    className={`dropDownButton w-full md:py-2 md:text-sm`}
+                    variant={dropDownVariant === "primary" ? "solid": "custom" }
                     scale="lg"
                     isDisabled={false}
                     onClick={()=>setOpen((prev) => !prev)}
-                    customButtonClass={"bg-black-800 text-light-high"}
+                    customButtonClass={dropDownVariant !== "primary" ?
+                        dropDownVariantBg ? `${dropDownVariantBg}`
+                         : "bg-black-800 text-light-high" :  ""
+                        }
                 >
                     {dropdownLabel}
                 </Button>
                 <div
-                    className={`absolute opacity-0 px-4 py-3 transition-opacity transform ease duration-200 bg-dropDown left-0 right-0 ${
+                    className={`absolute opacity-0 transition-opacity transform ease duration-200 bg-dropDown left-0 right-0 ${
                         open ? "visible translate-y-0 opacity-100" : "invisible"
                     } text-light-high rounded-md`}
                 >
@@ -61,12 +71,8 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
                                 className="px-4 py-2 flex items-center md:py-3"
                                 onClick={item.handler}
                             >
-                                {item.imageUrl ? (
-                                    <img
-                                        src={item.imageUrl}
-                                        alt={"logo"}
-                                        className="w-[20px] h-[20px]"
-                                    />
+                                {item.image ? (
+                                    item.image
                                 ) : null}
                                 <span className="ml-4 text-light-high text-sm font-medium leading-normal md:text-xsm md:ml-2">
                                     {item.optionName}

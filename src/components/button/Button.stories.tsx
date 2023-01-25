@@ -13,6 +13,7 @@ export default {
 
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+
 const ColorsTemplate: ComponentStory<typeof Button> = ({ color, ...args }) => (
   <div className="flex w-full justify-evenly flex-wrap">
     {ButtonVariantsValues.map((variant) => (

@@ -40,6 +40,7 @@ module.exports = {
       input: "rgba(27, 27, 27, 0.6)",
       red: "#c73238",
       "red-light": "#cb575bfa",
+      "black-full": "#000",
       "black-900": "#171717",
       "black-800": "#181818",
       "black-700": "#1b1b1b",
