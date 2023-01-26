@@ -3,21 +3,26 @@
 @tailwind utilities;
 
 * {
-    transition-property: color, background-color, border-color,
+  transition-property: color, background-color, border-color,
     text-decoration-color, fill, stroke, opacity !important;
 }
 
 @keyframes modalFadeIn {
-    from {
-        transform: translateY(-50%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  from {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .modalAnimate.open {
-    animation: modalFadeIn 0.5s;
+  animation: modalFadeIn 0.5s;
+}
+
+.dropDownHover:hover .dropDownContent {
+  visibility: visible;
+  opacity: 1;
 }
