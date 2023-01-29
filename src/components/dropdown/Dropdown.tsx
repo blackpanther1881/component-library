@@ -1,12 +1,16 @@
-import React, { useRef } from "react";
+import React, { ReactElement, useRef } from "react";
 import { DetailedHTMLProps, forwardRef, HTMLAttributes, useState } from "react";
 import { Button } from "../button";
 import { useOnClickOutside } from "../../utils/useOnClickOutside";
+import { DropdownItem } from "./DropdownItem";
+import { emptyFunc } from "../../utils/helpers";
+import { DropdownHrefItem } from "./DropdownHrefItem";
 
 export interface optionList {
   optionName: React.ReactNode | string;
   handler?: () => void;
   image?: React.ReactNode | string;
+  type: "anchor" | "onClick";
 }
 
 export type DropdownButtonVariants = "primary" | "custom";
@@ -14,10 +18,11 @@ export type DropdownType = "hover" | "click";
 
 export type DropdownProps = {
   dropdownLabel: React.ReactNode | string;
-  DropdownType?: DropdownType;
+  dropdownType?: DropdownType;
+  children: ReactElement[];
   className?: string;
-  contentList: optionList[];
   rounded?: boolean;
+  // optionList: optionList[];
   staticBackDrop?: boolean;
   dropDownVariant: DropdownButtonVariants;
   dropDownVariantBg?: string;
@@ -25,14 +30,14 @@ export type DropdownProps = {
 
 export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
   ({
+    children,
     dropdownLabel,
-    contentList,
     className = "",
     rounded = false,
     staticBackDrop = true,
     dropDownVariant = "primary",
     dropDownVariantBg = "",
-    DropdownType = "click"
+    dropdownType = "click"
   }) => {
     const [open, setOpen] = useState<boolean>(false);
     const topRounding = rounded ? "rounded-t-md" : "";
@@ -46,7 +51,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
     return (
       <div
         className={`${topRounding} ${className} text-white relative inline-block dropDown ${
-          DropdownType === "click" ? "dropDownClick" : "dropDownHover"
+          dropdownType === "click" ? "dropDownClick" : "dropDownHover"
         }`}
         ref={staticBackDrop ? null : ref}
       >
@@ -56,7 +61,9 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
           variant={dropDownVariant === "primary" ? "solid" : "custom"}
           scale="lg"
           isDisabled={false}
-          onClick={() => setOpen((prev) => !prev)}
+          onClick={
+            dropdownType === "click" ? () => setOpen((prev) => !prev) : () => {}
+          }
           customButtonClass={
             dropDownVariant !== "primary"
               ? dropDownVariantBg
@@ -68,23 +75,28 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
           {dropdownLabel}
         </Button>
         <div
-          className={`dropDownContent absolute opacity-0 transition-opacity transform ease duration-200 bg-dropDown left-0 right-0 ${
+          className={`dropDownContent w-fit absolute opacity-0 transition-opacity transform ease duration-200 bg-dropDown left-0 right-0 ${
             open ? "visible translate-y-0 opacity-100" : "invisible"
           } text-light-high rounded-md`}
         >
-          {contentList.map((item: any, index: number) => (
-            <div key={index}>
-              <div
-                className="px-4 py-2 flex items-center md:py-3 hover:cursor-pointer"
-                onClick={item.handler}
-              >
-                {item.image ? item.image : null}
-                <span className="ml-4 text-light-high text-sm font-medium leading-normal md:text-xsm md:ml-2">
-                  {item.optionName}
-                </span>
-              </div>
-            </div>
-          ))}
+          {children.map((item, index) =>
+            item.props.href ? (
+              <DropdownHrefItem
+                href={item.props.href ? item.props.href : "#"}
+                image={item.props.image}
+                target={item.props.target}
+                index={index}
+                optionName={item.props.optionName}
+              />
+            ) : (
+              <DropdownItem
+                onClick={item.props.href ? emptyFunc : item.props.onClick}
+                image={item.props.image}
+                index={index}
+                optionName={item.props.optionName}
+              />
+            )
+          )}
         </div>
       </div>
     );
